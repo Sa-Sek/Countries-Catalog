@@ -9,6 +9,7 @@ import { RestcountriesService } from 'src/app/api/restcountries.service';
 export class HomePageComponent implements OnInit {
 
   loading: boolean = true;
+  countries: any[] = [];
 
   constructor(
     private $resCountry: RestcountriesService
@@ -21,8 +22,9 @@ export class HomePageComponent implements OnInit {
   async getPageInfo() {
     this.loading = true;
     try {
-      let resCountries: any = await this.$resCountry.getCoutries({},'/all');
-      console.log("resCountries", resCountries);      
+      this.countries = await this.$resCountry.getCoutries({},'/all');
+      console.log("countries", this.countries);      
+      console.log("Name", this.countries[0].name.official);      
       this.loading = false;
     } catch (ex) {
       this.loading = false;

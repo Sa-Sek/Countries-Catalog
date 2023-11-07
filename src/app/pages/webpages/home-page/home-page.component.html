@@ -1,0 +1,42 @@
+<div class="p-8">
+    <h1>
+        Countries Catalog Implementation
+    </h1>
+    <p-table #dt [globalFilterFields]="['name.official']" [value]="countries" [loading]="loading" [showCurrentPageReport]="true" [rows]="25" [paginator]="true" [rowsPerPageOptions]="[25,50,100]" [pageLinks]="0">
+        <ng-template pTemplate="caption">
+            <div class="table-header flex gap-2">
+                <button pButton type="button" label="Ascending" class="p-button-outlined p-button-secondary"></button>
+                <button pButton type="button" label="Descending" class="p-button-outlined p-button-secondary"></button>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Country Name" class="" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="paginator" pTemplate="paginatorleft"></ng-template>
+        <ng-template pTemplate="header">
+            <tr class="text-left">
+                <th class="w-6rem">Flags</th>
+                <th class="" >Name</th>
+                <!--<th>2 character Country Code</th>
+                <th>3 character Country Code</th>
+                <th>Native Country Name</th>
+                <th>Alternative Country Name</th>
+                <th>Country Calling Codes</th>-->
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-country>
+            <tr>
+                <td class="">
+                    <img [src]="country.flags.png" class="w-3rem">
+                </td>
+                <td class="">{{country.name.official}}</td>
+                <!--<td>{{country.cca2}}</td>
+                <td>{{country.cca3}}</td>
+                <td>{{country.name.nativeName}}</td>
+                <td>{{country.altSpellings}}</td>
+                <td>{{country.idd}}</td>-->
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
