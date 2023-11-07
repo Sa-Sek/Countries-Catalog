@@ -1,12 +1,12 @@
-<div class="p-8">
+<div class="px-8 py-4 h-screen">
     <h1>
         Countries Catalog Implementation
     </h1>
     <p-table #dt [globalFilterFields]="['name.official']" [value]="countries" [loading]="loading" [showCurrentPageReport]="true" [rows]="25" [paginator]="true" [rowsPerPageOptions]="[25,50,100]" [pageLinks]="0">
         <ng-template pTemplate="caption">
             <div class="table-header flex gap-2">
-                <button pButton type="button" label="Ascending" class="p-button-outlined p-button-secondary"></button>
-                <button pButton type="button" label="Descending" class="p-button-outlined p-button-secondary"></button>
+                <button (click)="btnSortBy('Ascending')" pButton type="button" label="Ascending" class="p-button-outlined p-button-secondary"></button>
+                <button (click)="btnSortBy('Descending')" pButton type="button" label="Descending" class="p-button-outlined p-button-secondary"></button>
                 <span class="p-input-icon-right">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Country Name" class="" />
@@ -22,7 +22,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-country>
             <tr>
-                <td class="">
+                <td class="w-6rem">
                     <img [src]="country.flags.png" class="w-3rem">
                 </td>
                 <td class="cursor-pointer hover:underline" (click)="showDialog(country)">{{country.name.official}}</td>

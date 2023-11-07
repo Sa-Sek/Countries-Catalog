@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { reverse } from 'dns';
 import { RestcountriesService } from 'src/app/api/restcountries.service';
 
 @Component({
@@ -25,19 +26,25 @@ export class HomePageComponent implements OnInit {
     this.loading = true;
     try {
       this.countries = await this.$resCountry.getCoutries({}, '/all');
-      console.log("countries", this.countries);
-      console.log("Name", this.countries[0].name.official);
       this.loading = false;
     } catch (ex) {
       this.loading = false;
     }
   }
 
+  btnSortBy(value:string){
+    if(value === 'Ascending'){
+      this.countries.sort((a, b) => a.name.official.localeCompare(b.name.official));
+    }
+    if(value === 'Descending'){
+      this.countries.sort((a, b) => b.name.official.localeCompare(a.name.official));
+    }
+
+  }
+
   showDialog(value: {}) {
     this.display = true;
     this.country = value;
-    console.log("country", this.country);
-    
   }
 
 }
