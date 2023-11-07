@@ -18,11 +18,6 @@
             <tr class="text-left">
                 <th class="w-6rem">Flags</th>
                 <th class="" >Name</th>
-                <!--<th>2 character Country Code</th>
-                <th>3 character Country Code</th>
-                <th>Native Country Name</th>
-                <th>Alternative Country Name</th>
-                <th>Country Calling Codes</th>-->
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-country>
@@ -30,13 +25,28 @@
                 <td class="">
                     <img [src]="country.flags.png" class="w-3rem">
                 </td>
-                <td class="">{{country.name.official}}</td>
-                <!--<td>{{country.cca2}}</td>
-                <td>{{country.cca3}}</td>
-                <td>{{country.name.nativeName}}</td>
-                <td>{{country.altSpellings}}</td>
-                <td>{{country.idd}}</td>-->
+                <td class="cursor-pointer hover:underline" (click)="showDialog(country)">{{country.name.official}}</td>
             </tr>
         </ng-template>
     </p-table>
+
+    <p-dialog [header]="country?.name?.official" [(visible)]="display" [style]="{width: '50vw'}">
+        <img [src]="country?.flags?.png" class="w-5rem">
+        <p>
+            2 character Country Code : {{country?.cca2}}
+        </p>
+        <p>
+            3 character Country Code : {{country?.cca3}}
+        </p>
+        <p>
+            Native Country Name : {{country?.name?.nativeName}}
+        </p>
+        <p>
+            Alternative Country Name : {{country?.altSpellings}}
+        </p>
+        <p>
+            Country Calling Codes : {{country?.idd}}
+        </p>
+    </p-dialog>
+
 </div>
