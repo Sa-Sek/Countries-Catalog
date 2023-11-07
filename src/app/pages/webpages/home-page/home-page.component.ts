@@ -45,6 +45,8 @@ export class HomePageComponent implements OnInit {
   showDialog(value: {}) {
     this.display = true;
     this.country = value;
+    console.log("country", this.country);
+    
   }
 
 }
