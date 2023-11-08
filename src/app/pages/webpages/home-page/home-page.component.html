@@ -39,7 +39,7 @@
             3 character Country Code : {{country?.cca3}}
         </p>
         <p>
-            Native Country Name : {{country?.name?.nativeName['eng']?.official}}
+            Native Country Name : {{country?.name?.nativeName && country?.name?.nativeName['eng']?.official}}
         </p>
         <p>
             Alternative Country Name : {{country?.altSpellings}}
